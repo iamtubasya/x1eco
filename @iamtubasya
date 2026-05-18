@@ -1,0 +1,408 @@
+<?php
+
+$hitam="\033[0;30m"; $abu2="\033[1;30m";               $putih="\033[0;37m"; $putih2="\033[1;37m";$merah="\033[0;31m"; $merah2="\033[1;31m";             $hijau="\033[0;32m"; $hijau2="\033[1;32m";$kuning="\033[0;33m"; $kuning2="\033[1;33m";           $biru="\033[0;34m"; $biru2="\033[1;34m";$ungu="\033[0;35m"; $purple2="\033[1;35m";             $lblue="\033[0;36m"; $lblue2="\033[1;36m";                                                       $putih1="\033[7;37m";$merah1="\033[7;31m";                                  $hijau1="\033[7;32m";$kuning1="\033[7;33m";$biru1="\033[7;34m";                                   $ungu1="\033[7;35m";$lblue1="\033[7;36m";
+error_reporting(0);
+date_default_timezone_set('Asia/Jakarta');
+
+
+function banner(){
+
+date_default_timezone_set('Asia/Jakarta');
+
+
+$hitam="\033[0;30m"; $abu2="\033[1;30m";               $putih="\033[0;37m"; $putih2="\033[1;37m";$merah="\033[0;31m"; $merah2="\033[1;31m";             $hijau="\033[0;32m"; $hijau2="\033[1;32m";$kuning="\033[0;33m"; $kuning2="\033[1;33m";           $biru="\033[0;34m"; $biru2="\033[1;34m";$ungu="\033[0;35m"; $ungu2="\033[1;35m";             $lblue="\033[0;36m"; $lblue2="\033[1;36m";                                                       $putih1="\033[7;37m";$merah1="\033[7;31m";                                  $hijau1="\033[7;32m";$kuning1="\033[7;33m";$biru1="\033[7;34m";                                   $ungu1="\033[7;35m";$lblue1="\033[7;36m";
+$date = "    Asia/Jakarta : ".date("H:i")." WIB  ||  ".date("D, d-M-Y");
+
+$banner =
+$hijau2."\n\n".$date."\n".$putih2.
+$putih1."~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~".$hitam."\n\n".
+
+$merah2."   ██████╗  ██╗  ██╗  ██╗  ██████╗   ███████╗  ██████╗ ".$hitam."\n".
+$merah2."  ██╔════╝  ██║  ██║  ██║  ██╔══██╗  ██╔════╝  ██╔══██╗".$hitam."\n".
+$merah2."  ██║       ███████║  ██║  ██████╔╝  █████╗    ██████╔╝".$hitam."\n".
+$putih2."  ██║       ██╔══██║  ██║  ██╔═══╝   ██╔══╝    ██╔══██╗".$hitam."\n".
+$putih2."  ╚██████╗  ██║  ██║  ██║  ██║       ███████╗  ██║  ██║".$hitam."\n".
+$putih2."   ╚═════╝  ╚═╝  ╚═╝  ╚═╝  ╚═╝       ╚══════╝  ╚═╝  ╚═╝".$hitam."\n\n".
+$merah2."  █████╗██╗   ██╗  ██╗██╗  ██╗".$hitam.$putih2." • AUTHOR  : ".$kuning2."I'M TUBASYA".$hitam."\n".
+$merah2."  ██╔══╝██║   ██║  ██║╚██╗██╔╝".$hitam."\n".
+$merah2."  ████╗ ██║   ██║  ██║ ╚███╔╝ ".$hitam.$putih2." • TWITTER : ".$lblue2."@ChiperFlux".$hitam."\n".
+$putih2."  ██╔═╝ ██║   ██║  ██║ ██╔██╗ ".$hitam."\n".
+$putih2."  ██║   █████╗╚█████╔╝██╔╝ ██╗".$hitam.$putih2." • TELE ID : ".$biru2."@Chiper_Flux".$hitam."\n".
+$putih2."  ╚═╝   ╚════╝ ╚════╝ ╚═╝  ╚═╝".$hitam."\n".$putih2.
+$putih1."~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~".$hitam."\n".
+$putih2."\n ".$lblue1." TOOLS X1 ECO ".$hitam.$putih2."  • Auto Referral + Farming Faucet X1 \n".
+$putih2."                 • WEBSITE : ".$kuning2."https://t.x1eco.com\n".
+$putih1."~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~".$hitam."\n";
+return $banner;
+
+}
+
+
+
+function post($url, $header, $data, $proxy=null){
+
+    $ch = curl_init();
+
+    curl_setopt_array($ch, [
+        CURLOPT_URL => $url,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_HTTPHEADER => $header,
+        CURLOPT_POST => true,
+        CURLOPT_POSTFIELDS => $data,
+        CURLOPT_SSL_VERIFYPEER => false,
+        CURLOPT_SSL_VERIFYHOST => false,
+        CURLOPT_CONNECTTIMEOUT => 30,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_ENCODING => '',
+    ]);
+
+    if($proxy){
+
+        // format:
+        // ip:port
+        // user:pass@ip:port
+
+        $parts = parse_url("http://".$proxy);
+
+        curl_setopt($ch, CURLOPT_PROXY, $parts['host']);
+        curl_setopt($ch, CURLOPT_PROXYPORT, $parts['port']);
+
+        if(isset($parts['user']) && isset($parts['pass'])){
+            curl_setopt(
+                $ch,
+                CURLOPT_PROXYUSERPWD,
+                $parts['user'].':'.$parts['pass']
+            );
+        }
+
+        // HTTP proxy
+        curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTP);
+
+        // paksa semua traffic lewat proxy
+        curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, true);
+    }
+
+    $result = curl_exec($ch);
+
+    if(curl_errno($ch)){
+        echo curl_error($ch);
+    }
+
+    curl_close($ch);
+
+    return $result;
+}
+
+function get($url, $header=[], $proxy=null){
+
+    $ch = curl_init();
+
+    curl_setopt_array($ch, [
+        CURLOPT_URL => $url,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_HTTPHEADER => $header,
+        CURLOPT_SSL_VERIFYPEER => false,
+        CURLOPT_SSL_VERIFYHOST => false,
+        CURLOPT_CONNECTTIMEOUT => 30,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_ENCODING => '',
+    ]);
+
+    if($proxy){
+
+        $parts = parse_url("http://".$proxy);
+
+        curl_setopt($ch, CURLOPT_PROXY, $parts['host']);
+        curl_setopt($ch, CURLOPT_PROXYPORT, $parts['port']);
+
+        if(isset($parts['user']) && isset($parts['pass'])){
+            curl_setopt(
+                $ch,
+                CURLOPT_PROXYUSERPWD,
+                $parts['user'].':'.$parts['pass']
+            );
+        }
+
+        curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTP);
+        curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, true);
+    }
+
+    $result = curl_exec($ch);
+
+    if(curl_errno($ch)){
+        echo curl_error($ch);
+    }
+
+    curl_close($ch);
+
+    return $result;
+}
+
+
+function priv(){
+$allpriv=file_get_contents("privatekey.txt");
+
+$priv=explode("\npkey:",$allpriv);
+
+$cc=count($priv)-1;
+
+$priv=$priv[1];
+
+file_put_contents("priv",$priv);
+
+file_put_contents('data.txt',"PRIVATE_KEY=$priv");
+}
+
+
+function delpriv(){
+$allpriv=file_get_contents("privatekey.txt");
+
+$priv=file_get_contents('priv');;
+
+$save=str_replace("\npkey:$priv","",$allpriv);
+
+file_put_contents('privatekey.txt',$save);
+
+}
+
+
+
+function ranproxy(){
+
+$allproxy=file_get_contents("proxyuser.txt");
+$proxy=explode("\n",$allproxy);
+$jum=count($proxy)-2;
+$rand=rand(1,$jum);
+$proxy=$proxy[$rand];
+file_put_contents("proxy.txt",$proxy);
+
+}
+
+
+function daftar(){
+$proxy=file_get_contents("proxy.txt");
+$ua=array(
+"Host: testnet-api.x1eco.com",
+"content-length: ",
+"user-agent: Mozilla/5.0 (Linux; Android 11; M2101K6G Build/RKQ1.200826.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.137 Mobile Safari/537.36 Line/26.6.1/IAB",
+"content-type: application/json",
+"origin: https://testnet.x1ecochain.com",                                   "x-requested-with: jp.naver.line.android",
+"sec-fetch-site: cross-site",
+"sec-fetch-mode: cors",
+"sec-fetch-dest: empty",
+"referer: https://testnet.x1ecochain.com/",
+"accept-language: id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7",
+
+);
+
+$signature=file_get_contents('signature.txt');
+$address=file_get_contents('signmsg.txt');
+$address=explode("Address ",$address);
+$address=$address[1];
+
+$url="https://testnet-api.x1eco.com/signin";
+
+include('kodereff.php');
+
+ $data='{"signature":"'.$signature.'","address":"'.$address.'","ref_code":"'.$kodereff.'"}';
+
+$post=post($url,$ua,$data,$proxy);
+file_put_contents("respon.txt",$post);
+}
+
+
+function quest(){
+
+$hitam="\033[0;30m"; $abu2="\033[1;30m";               $putih="\033[0;37m"; $putih2="\033[1;37m";$merah="\033[0;31m"; $merah2="\033[1;31m";             $hijau="\033[0;32m"; $hijau2="\033[1;32m";$kuning="\033[0;33m"; $kuning2="\033[1;33m";           $biru="\033[0;34m"; $biru2="\033[1;34m";$ungu="\033[0;35m"; $purple2="\033[1;35m";             $lblue="\033[0;36m"; $lblue2="\033[1;36m";                                                       $putih1="\033[7;37m";$merah1="\033[7;31m";                                  $hijau1="\033[7;32m";$kuning1="\033[7;33m";$biru1="\033[7;34m";                                   $ungu1="\033[7;35m";$lblue1="\033[7;36m";
+
+$address=file_get_contents('signmsg.txt');
+$address=explode("Address ",$address);
+$address=$address[1];
+$auth=json_decode(file_get_contents("respon.txt"));
+$auth=$auth->token;
+$proxy=file_get_contents("proxy.txt");
+$uafaucet=array(
+"Host: nft-api.x1eco.com",
+"authorization: $auth",
+"user-agent: Mozilla/5.0 (Linux; Android 11; M2101K6G Build/RKQ1.200826.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.137 Mobile Safari/537.36 Line/26.6.1/IAB",
+"content-type: application/json",
+"origin: https://testnet.x1ecochain.com",
+"x-requested-with: jp.naver.line.android",
+"sec-fetch-site: cross-site",
+"sec-fetch-mode: cors",
+"sec-fetch-dest: empty",
+"referer: https://testnet.x1ecochain.com/",
+"accept-language: id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7",
+);
+
+$ua=array(
+"Host: testnet-api.x1eco.com",
+"content-length: ",
+"areyouahuman: true",
+"authorization: $auth",
+"user-agent: Mozilla/5.0 (Linux; Android 11; M2101K6G Build/RKQ1.200826.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.137 Mobile Safari/537.36 Line/26.6.1/IAB",
+"content-type: application/json",
+"origin: https://testnet.x1ecochain.com",
+"x-requested-with: jp.naver.line.android",
+"sec-fetch-site: cross-site",
+"sec-fetch-mode: cors",
+"sec-fetch-dest: empty",
+"referer: https://testnet.x1ecochain.com/",
+"accept-language: id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7",
+
+);
+
+$url="https://nft-api.x1eco.com/testnet/faucet?address=$address";
+  $get=get($url,$uafaucet,$proxy);
+
+if($get=="ok"){
+
+$start = substr($address, 0, 7);
+$end   = substr($address, -7);
+
+$result = $start . "*******" . $end;
+
+
+echo $hijau2." • Faucet sent to your wallet\n";
+echo $putih2." ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+}else{
+$start = substr($address, 0, 7);
+$end   = substr($address, -7);
+
+$result = $start . "*******" . $end;
+
+echo $merah2." • Faucet failed too many request\n";
+echo $putih2." ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+}
+
+$url="https://testnet-api.x1eco.com/quests";
+  $get=json_decode(get($url,$ua));
+
+
+$get=json_decode('[{"id":"691fd13e814608a47a30e4a2"},{"id":"691fd151814608a47a30e4a4"},{"id":"691fd162814608a47a30e4a6"},{"id":"69eb22c633c5ade6ec3a725e"},{"id":"69b93437185b5d7adc318057"}]');
+$s=0;
+$ss=count($get)-1;
+$qs=1;
+
+echo $putih2."\n $kuning1 • Starting Quest • $hitam \n"; usleep(200000);
+
+while(true){
+$qid=$get[$s]->id;
+echo $putih2."\n • Quest $qs ->";
+$url="https://testnet-api.x1eco.com/quests?quest_id=$qid";
+  $post=json_decode(post($url,$ua,$data=null));
+
+$sts=$post->message;
+if($sts=="Quest completed successfully"){
+echo $hijau2." [✓] Quest completed"; usleep(200000);
+}else{
+echo $merah2." [X] Quest Failed"; usleep(200000);
+
+}
+
+if($s==$ss){
+break;
+}
+
+$s++;
+$qs++;
+
+
+}
+
+}
+
+
+
+function start(){
+
+
+$hitam="\033[0;30m"; $abu2="\033[1;30m";               $putih="\033[0;37m"; $putih2="\033[1;37m";$merah="\033[0;31m"; $merah2="\033[1;31m";             $hijau="\033[0;32m"; $hijau2="\033[1;32m";$kuning="\033[0;33m"; $kuning2="\033[1;33m";           $biru="\033[0;34m"; $biru2="\033[1;34m";$ungu="\033[0;35m"; $purple2="\033[1;35m";             $lblue="\033[0;36m"; $lblue2="\033[1;36m";                                                       $putih1="\033[7;37m";$merah1="\033[7;31m";                                  $hijau1="\033[7;32m";$kuning1="\033[7;33m";$biru1="\033[7;34m";                                   $ungu1="\033[7;35m";$lblue1="\033[7;36m";
+shell_exec("rm sts 2>&1");
+priv();
+ranproxy();
+$allproxy=file_get_contents("proxyuser.txt");
+$allproxy=explode("\n",$allproxy);
+$jumprox=count($allproxy)-1;
+
+$proxy=file_get_contents("proxy.txt");
+$prox=explode('@',$proxy);
+$prox=$prox[1];
+echo $hijau2."\n • $jumprox Proxy Actived"; usleep(200000);
+echo $putih2."\n • Proxy :$lblue2 $prox"; usleep(200000);
+echo $putih2."\n ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";usleep(200000);
+echo $hijau2;
+system("node authmsg.js");
+system("node sign.js");
+daftar();
+$res=json_decode(file_get_contents("respon.txt"));
+$error=$res->error;
+if($error=="invalid signature"){
+echo $merah2."\n • IP LIMIT -> Invalid Signature!";
+sleep(2);
+
+$allproxy=file_get_contents("proxyuser.txt");
+
+$save=str_replace("\n$proxy","",$allproxy);
+
+file_put_contents("proxyuser.txt",$save);
+}else{
+$address=file_get_contents('signmsg.txt');
+$address=explode("Address ",$address);
+$address=$address[1];
+$start = substr($address, 0, 7);
+$end   = substr($address, -7);
+
+$result = $start . "*******" . $end;
+
+
+echo $putih2."\n $hijau1 • Wallet Connected • $hitam \n\n"; usleep(200000);
+echo $putih2." • ADDRESS :$lblue2 $result\n";
+delpriv();
+quest();
+$variable = shell_exec("node send.js");
+file_put_contents("sts","berhasil");
+}
+};
+
+
+
+
+function startbot(){
+$hitam="\033[0;30m"; $abu2="\033[1;30m";               $putih="\033[0;37m"; $putih2="\033[1;37m";$merah="\033[0;31m"; $merah2="\033[1;31m";             $hijau="\033[0;32m"; $hijau2="\033[1;32m";$kuning="\033[0;33m"; $kuning2="\033[1;33m";           $biru="\033[0;34m"; $biru2="\033[1;34m";$ungu="\033[0;35m"; $purple2="\033[1;35m";             $lblue="\033[0;36m"; $lblue2="\033[1;36m";                                                       $putih1="\033[7;37m";$merah1="\033[7;31m";                                  $hijau1="\033[7;32m";$kuning1="\033[7;33m";$biru1="\033[7;34m";                                   $ungu1="\033[7;35m";$lblue1="\033[7;36m";
+
+include('kodereff.php');
+
+if (isset($kodereff) && !empty($kodereff)) {
+
+$tb=0;
+while(true){
+system("clear"); echo banner();
+echo $putih2."\n   $lblue1 BOT RUNNING $hitam\n"; usleep(200000);
+echo "\n$putih2 • Session Success -> $kuning2 $tb Referral";
+echo $putih2."\n ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"; usleep(200000);
+start();
+$sts=file_get_contents("sts");
+
+if($sts=="berhasil"){
+$tb++;
+}
+
+
+}
+
+
+}else{
+system("clear"); echo banner();
+$update=file_get_contents('https://raw.githubusercontent.com/iamtubasya/x1eco/main/bot.php');
+file_put_contents("bot.php",$update);
+echo $hijau2."\n\n Script has been updated successfully!";
+echo "\n $kuning2 Mulai ulang bot -> php bot.php";
+echo "\n $putih2 Add Form ( Add referral Code )\n\n";
+exit;
+
+}
+
+}
